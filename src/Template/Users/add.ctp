@@ -31,6 +31,7 @@ $this->end();
     echo $this->Form->control('username');
     echo $this->Form->control('password');
     echo $this->Form->control('role');
+    echo $this->Form->control('nombre');
     ?>
 </fieldset>
 <?= $this->Form->button(__("Add")); ?>

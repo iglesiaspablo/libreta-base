@@ -49,6 +49,10 @@ $this->end();
             <td><?= h($user->role) ?></td>
         </tr>
         <tr>
+            <td><?= __('Nombre') ?></td>
+            <td><?= h($user->nombre) ?></td>
+        </tr>
+        <tr>
             <td><?= __('Created') ?></td>
             <td><?= h($user->created) ?></td>
         </tr>
