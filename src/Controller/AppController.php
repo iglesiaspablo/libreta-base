@@ -66,18 +66,16 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // Admin can access every action
-        /*if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        }
-
-        // Default deny
-        return false;*/
+        if (isset($user['role']) && $user['role'] === 'admin') 
+        {
         return true;
+        }
+        return false;
     }
 
     public function beforeFilter(Event $event)
     {   
-        $this->Auth->allow(['index', 'view', 'display']);
+        $this->set('current_user', $this->Auth->user());
     }
 
     /**
@@ -96,8 +94,8 @@ class AppController extends Controller
             var_dump($this->Auth->user());
         }
         if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
+            in_array($this->response->type(), ['application/json', 'application/xml'])) 
+            {
             $this->set('_serialize', true);
         }
         if ($this->Auth->user('role'))
