@@ -13,6 +13,19 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
+    
+    public function isAuthorized($user)
+    {
+        if (isset($user['role']) && $user['role'] === 'alumno')
+        {
+            if(in_array($this->request->action, ['home','logout', 'libreta', 'user']))
+            {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+    
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);

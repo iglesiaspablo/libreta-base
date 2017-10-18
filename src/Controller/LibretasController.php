@@ -18,6 +18,8 @@ class LibretasController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+    
+    
     public function index()
     {
         $this->paginate = [
@@ -28,7 +30,7 @@ class LibretasController extends AppController
         $this->set(compact('libretas'));
         $this->set('_serialize', ['libretas']);
     }
-
+   
     /**
      * View method
      *
