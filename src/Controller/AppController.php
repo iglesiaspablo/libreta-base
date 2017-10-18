@@ -98,7 +98,7 @@ class AppController extends Controller
             {
             $this->set('_serialize', true);
         }
-        if ($this->Auth->user('role'))
+        if (isset($this->Auth) && $this->Auth->user('role'))
             $this->set("userRole", $this->Auth->user('role'));
     }
 }

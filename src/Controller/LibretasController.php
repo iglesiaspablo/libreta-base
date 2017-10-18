@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Libretas Controller
@@ -12,6 +13,16 @@ use App\Controller\AppController;
  */
 class LibretasController extends AppController
 {
+
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // Allow users to register and logout.
+        // You should not add the "login" action to allow list. Doing so would
+        // cause problems with normal functioning of AuthComponent.
+        $this->Auth->allow(['add']);
+    }
 
     /**
      * Index method
@@ -58,6 +69,8 @@ class LibretasController extends AppController
         $libreta = $this->Libretas->newEntity();
         if ($this->request->is('post')) {
             $libreta = $this->Libretas->patchEntity($libreta, $this->request->getData());
+            if (!($this->Auth->user('role') === "admin"))
+                $libreta->user_id = $this->Auth->user("id");
             if ($this->Libretas->save($libreta)) {
                 $this->Flash->success(__('The libreta has been saved.'));
 

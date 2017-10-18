@@ -26,7 +26,8 @@ $this->end();
     <?php
     echo $this->Form->control('nombre');
     echo $this->Form->control('carrera_id');
-    echo $this->Form->control('user_id');
+    if (isset($userRole) && $userRole === "admin")
+    	echo $this->Form->control('user_id');
     ?>
 </fieldset>
 <?= $this->Form->button(__("Add")); ?>
