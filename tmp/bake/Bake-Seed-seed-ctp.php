@@ -13,22 +13,33 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
+<CakePHPBakeOpenTagphp
+use Migrations\AbstractSeed;
 
+/**
+ * <?= $name ?> seed.
+ */
+class <?= $name ?>Seed extends AbstractSeed
+{
     /**
-     * Index method
+     * Run Method.
      *
-     * @return \Cake\Http\Response|void
+     * Write your database seeder using this method.
+     *
+     * More information on writing seeds is available here:
+     * http://docs.phinx.org/en/latest/seeding.html
+     *
+     * @return void
      */
-    public function index()
+    public function run()
     {
-<?php $belongsTo = $this->Bake->aliasExtractor($modelObj, 'BelongsTo'); ?>
-<?php if ($belongsTo): ?>
-        $this->paginate = [
-            'contain' => [<?= $this->Bake->stringifyList($belongsTo, ['indent' => false]) ?>]
-        ];
+<?php if ($records): ?>
+        $data = <?= $records ?>;
+<?php else: ?>
+        $data = [];
 <?php endif; ?>
-        $<?= $pluralName ?> = $this->paginate($this-><?= $currentModelName ?>);
 
-        $this->set(compact('<?= $pluralName ?>'));
-        $this->set('_serialize', ['<?= $pluralName ?>']);
+        $table = $this->table('<?= $table ?>');
+        $table->insert($data)->save();
     }
+}
