@@ -20,6 +20,7 @@ class MateriasFixture extends TestFixture
         'id' => ['type' => 'uuid', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'nombre' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'anio_cursado' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'carrera_id' => ['type' => 'uuid', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -39,11 +40,12 @@ class MateriasFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => '3b8bedeb-05a4-48ec-82b2-11a2bdcb4ebe',
+            'id' => 'e3451ee7-470e-4db4-b121-3c33b25284c2',
             'nombre' => 'Lorem ipsum dolor sit amet',
             'anio_cursado' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-10-18 23:17:23',
-            'modified' => '2017-10-18 23:17:23'
+            'carrera_id' => 'a993b0c2-adcd-46e8-9565-382bbd2f3418',
+            'created' => '2017-10-18 23:28:49',
+            'modified' => '2017-10-18 23:28:49'
         ],
     ];
 }

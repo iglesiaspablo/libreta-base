@@ -20,6 +20,9 @@ class MateriasController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Carreras']
+        ];
         $materias = $this->paginate($this->Materias);
 
         $this->set(compact('materias'));
@@ -36,7 +39,7 @@ class MateriasController extends AppController
     public function view($id = null)
     {
         $materia = $this->Materias->get($id, [
-            'contain' => ['Examens']
+            'contain' => ['Carreras', 'Examens']
         ]);
 
         $this->set('materia', $materia);
@@ -60,7 +63,8 @@ class MateriasController extends AppController
             }
             $this->Flash->error(__('The materia could not be saved. Please, try again.'));
         }
-        $this->set(compact('materia'));
+        $carreras = $this->Materias->Carreras->find('list', ['limit' => 200]);
+        $this->set(compact('materia', 'carreras'));
         $this->set('_serialize', ['materia']);
     }
 
@@ -85,7 +89,8 @@ class MateriasController extends AppController
             }
             $this->Flash->error(__('The materia could not be saved. Please, try again.'));
         }
-        $this->set(compact('materia'));
+        $carreras = $this->Materias->Carreras->find('list', ['limit' => 200]);
+        $this->set(compact('materia', 'carreras'));
         $this->set('_serialize', ['materia']);
     }
 

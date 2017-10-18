@@ -25,6 +25,9 @@ class MateriasTableTest extends TestCase
      */
     public $fixtures = [
         'app.materias',
+        'app.carreras',
+        'app.libretas',
+        'app.users',
         'app.examens'
     ];
 
@@ -68,6 +71,16 @@ class MateriasTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

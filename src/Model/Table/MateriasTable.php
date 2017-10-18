@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Materias Model
  *
+ * @property \App\Model\Table\CarrerasTable|\Cake\ORM\Association\BelongsTo $Carreras
  * @property \App\Model\Table\ExamensTable|\Cake\ORM\Association\HasMany $Examens
  *
  * @method \App\Model\Entity\Materia get($primaryKey, $options = [])
@@ -40,6 +41,10 @@ class MateriasTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Carreras', [
+            'foreignKey' => 'carrera_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Examens', [
             'foreignKey' => 'materia_id'
         ]);
@@ -67,5 +72,19 @@ class MateriasTable extends Table
             ->notEmpty('anio_cursado');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['carrera_id'], 'Carreras'));
+
+        return $rules;
     }
 }

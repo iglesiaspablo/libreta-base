@@ -17,7 +17,8 @@ class CarrerasControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.carreras',
-        'app.libretas'
+        'app.libretas',
+        'app.users'
     ];
 
     /**

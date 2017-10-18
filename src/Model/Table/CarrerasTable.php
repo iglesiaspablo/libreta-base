@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Carreras Model
  *
  * @property \App\Model\Table\LibretasTable|\Cake\ORM\Association\HasMany $Libretas
+ * @property |\Cake\ORM\Association\HasMany $Materias
  *
  * @method \App\Model\Entity\Carrera get($primaryKey, $options = [])
  * @method \App\Model\Entity\Carrera newEntity($data = null, array $options = [])
@@ -41,6 +42,9 @@ class CarrerasTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany('Libretas', [
+            'foreignKey' => 'carrera_id'
+        ]);
+        $this->hasMany('Materias', [
             'foreignKey' => 'carrera_id'
         ]);
     }

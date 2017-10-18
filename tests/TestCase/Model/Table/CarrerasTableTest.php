@@ -25,7 +25,8 @@ class CarrerasTableTest extends TestCase
      */
     public $fixtures = [
         'app.carreras',
-        'app.libretas'
+        'app.libretas',
+        'app.users'
     ];
 
     /**

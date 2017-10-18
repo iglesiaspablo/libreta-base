@@ -9,9 +9,11 @@ use Cake\ORM\Entity;
  * @property string $id
  * @property string $nombre
  * @property string $anio_cursado
+ * @property string $carrera_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
+ * @property \App\Model\Entity\Carrera $carrera
  * @property \App\Model\Entity\Examen[] $examens
  */
 class Materia extends Entity
@@ -29,8 +31,10 @@ class Materia extends Entity
     protected $_accessible = [
         'nombre' => true,
         'anio_cursado' => true,
+        'carrera_id' => true,
         'created' => true,
         'modified' => true,
+        'carrera' => true,
         'examens' => true
     ];
 }

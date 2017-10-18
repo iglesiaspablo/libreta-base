@@ -85,6 +85,8 @@ class DatabaseSeed extends AbstractSeed
             $materiaData[] = [
                 'id' => $id,
                 'nombre' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+                'anio_cursado' => $faker->randomElement($array = array("primero", "segundo", "tercero")),
+                'carrera_id' => $faker->randomElement($carrerasIds),
                 'created'    => date("Y-m-d H:i:s"),
                 'modified'   => date("Y-m-d H:i:s")
             ];

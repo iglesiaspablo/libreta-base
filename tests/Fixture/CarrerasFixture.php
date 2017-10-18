@@ -38,10 +38,10 @@ class CarrerasFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => '5a8c7c35-103f-462e-b255-c3583f7d7c34',
+            'id' => 'd4942f06-a867-4efd-b73b-80d1e2288156',
             'nombre' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-10-18 22:35:34',
-            'modified' => '2017-10-18 22:35:34'
+            'created' => '2017-10-18 23:29:06',
+            'modified' => '2017-10-18 23:29:06'
         ],
     ];
 }

@@ -17,6 +17,9 @@ class MateriasControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.materias',
+        'app.carreras',
+        'app.libretas',
+        'app.users',
         'app.examens'
     ];
 
