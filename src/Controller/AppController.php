@@ -89,10 +89,7 @@ class AppController extends Controller
         // Note: These defaults are just to get started quickly with development
         // and should not be used in production. You should instead set "_serialize"
         // in each action as required.
-
-        if ($this->Auth->user()){
-            var_dump($this->Auth->user());
-        }
+        
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])) 
             {
