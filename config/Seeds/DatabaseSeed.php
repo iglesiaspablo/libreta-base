@@ -31,6 +31,7 @@ class DatabaseSeed extends AbstractSeed
             'username'   => 'admin',
             'password'   => $password,
             'role'       => 'admin',
+            'activo'     => true,
             'created'    => date("Y-m-d H:i:s"),
             'modified'   => date("Y-m-d H:i:s")
         ];
