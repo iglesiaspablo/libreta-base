@@ -15,14 +15,20 @@ class UsersController extends AppController
 {
     
     public function isAuthorized($user)
-    {
+    {   
         if (isset($user['role']) && $user['role'] === 'alumno')
         {
             if(in_array($this->request->action, ['home','logout', 'libreta', 'user']))
             {
                 return true;
             }
+        } elseif (!isset($user['role'])) {
+           if(in_array($this->request->action, ['registro', 'logout', 'login']))
+            {
+                return true;
+            }
         }
+
         return parent::isAuthorized($user);
     }
     
@@ -32,18 +38,21 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['add', 'logout', 'login']);
+        $this->Auth->allow(['logout', 'registro']);
     }
 
     public function login()
     {   
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            if ($user) {
+            if ($user && $user['activo']) {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
+            } elseif ($user && ($user['activo'] == false)) {
+                $this->Flash->error(__('El Usuario aun no está activado.'));   
+            } else {
+                $this->Flash->error(__('Nombre de usuario o contraseña incorrectos'));
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
         }
     }
 
@@ -91,15 +100,14 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if (!($this->Auth->user('role') === "admin"))
-                $user->role = "alumno";
+            $user = $this->Users->patchEntity($user, $this->request->getData());    
+            $user->role = "alumno";
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('El usuario ha sido registrado correctamente. Está pendiente de activación.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'registro']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('El usuario no pudo ser registrado. Intente nuevamente'));
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
