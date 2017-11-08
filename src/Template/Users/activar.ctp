@@ -8,7 +8,7 @@ $this->start('tb_actions');
     <li><?= $this->Html->link(__('New Libreta'), ['controller' => 'Libretas', 'action' => 'add']); ?></li>
 <?php $this->end(); ?>
 <?php $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_actions') . '</ul>'); ?>
-
+<h4>Activame los usuarios facha </h4>
 <table class="table table-striped" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
