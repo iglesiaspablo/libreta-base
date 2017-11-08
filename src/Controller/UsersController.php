@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -72,6 +73,34 @@ class UsersController extends AppController
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
+    }
+
+    /**
+     * Activar method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function activar($id = null)
+    {
+        $this->set('titulo', 'Activar Usuarios');
+
+        if ($this->request->is('post') && isset($id)) {
+            $usersTable = TableRegistry::get('Users');
+            $user = $usersTable->get($id);
+            $user->activo = 1;
+            if ($usersTable->save($user)) {
+                $this->Flash->success(__('El usuario ha sido activado correctamente.'));
+            } else {
+                $this->Flash->error(__('No se pudo activar el usuario.'));
+            }
+            return $this->redirect(['action' => 'activar']);
+        }
+
+        $this->paginate = ['finder' => 'desactivados'];
+        $users = $this->paginate($this->Users);
+
+        $this->set(compact('users'));
+        //$this->set('_serialize', ['users']);
     }
 
     /**

@@ -76,4 +76,9 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function findDesactivados(Query $query, array $options)
+    {
+        return $query->where(['activo' => 0]);
+    }
 }
